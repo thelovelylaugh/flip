@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="container">
+    <input type="text" name="" id="gameID">
+    <button id="btn1">Join game</button>
+    <button id="btn2">New game</button>
+</div>
+
+    <script>
+    const btn1 = document.getElementById("btn1");
+    const btn2 = document.getElementById("btn2")
+    const container = document.getElementById("container");
+    const gameID = document.getElementById("gameID")
+
+    btn1.addEventListener("click", async function(evt){
+        let updata = {
+                gameID: gameID.value
+            };
+        let cfg = {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(updata)
+        }
+        let url = "http://localhost:8080/flip"
+        let response = await fetch(url, cfg)
+        let data = await response.text();
+        
+        console.log(data);
+    })
+    
+
+    </script>
+</body>
